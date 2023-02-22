@@ -63,6 +63,7 @@ stepTemplates:
     interpreter: !DefaultInterpreter
       commands:
       - pip install -e .
+      - pip install -U pytest
       - pytest
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
