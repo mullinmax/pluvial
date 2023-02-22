@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+      {% include style_colorway %}
+      {% include style_structure %}
+      {% include style_code %}
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark no-print">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><span class="navbar-brand mb-0 h1">{{ app_name }}</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav">
+          {% for group in navigation %}
+            {% if group | length == 1 %}
+              <a class="nav-link{% if group[0]['url_ext'] == url_ext %} active{% endif %}" aria-current="page" href="/a/{{ group[0]['url_ext'] }}">{{ group[0]['title'] }}</a>  
+            {% else %}
+              <div class="nav-item dropdown">            
+                <a class="nav-link dropdown-toggle{% if group[0]['nav_group'] == active_nav_group %} active{% endif %}" href="#" id="{{ group[0]['nav_group'] }}_dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ group[0]['nav_group'] }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="{{ group[0]['nav_group'] }}_dropdown">
+                  {% for item in group %}
+                    <a class="dropdown-item" href="/a/{{ item['url_ext'] }}">{{ item['title'] }}</a>
+                  {% endfor %}
+                </div>  
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>  
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="article">
+    {% block body %}{% endblock %}
+  </div>
+  {% block script %}{% endblock %}
+</body>
+</html>
