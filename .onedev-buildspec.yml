@@ -50,6 +50,14 @@ stepTemplates:
     name: Set Build Description
     buildDescription: "version: @build_version@\r\nbranch: @branch@\r\ncommit: @commit_hash@"
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !CommandStep
+    name: Install Package
+    runInContainer: false
+    interpreter: !DefaultInterpreter
+      commands:
+      - pip install -e .
+    useTTY: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
 - name: Execute Tests
   steps:
   - !UseTemplateStep
@@ -62,7 +70,7 @@ stepTemplates:
     image: python:3.11
     interpreter: !DefaultInterpreter
       commands:
-      - pip install -U pytest
+      - pip install -e .
       - pytest
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
