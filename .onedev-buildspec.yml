@@ -121,3 +121,18 @@ jobs:
   maxRetries: 3
   retryDelay: 30
   timeout: 3600
+- name: groovy script test
+  steps:
+  - !CommandStep
+    name: groovy script test
+    runInContainer: true
+    image: python:3.11
+    interpreter: !DefaultInterpreter
+      commands:
+      - echo @script:groovy script test@
+    useTTY: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 3600
