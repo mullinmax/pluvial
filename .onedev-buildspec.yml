@@ -8,6 +8,34 @@ stepTemplates:
     withLfs: true
     withSubmodules: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !CommandStep
+    name: Write Build Version to file:BUILD_VERSION
+    runInContainer: true
+    image: python:3.11
+    interpreter: !DefaultInterpreter
+      commands:
+      - python setup.py --version > BUILD_VERSION
+    useTTY: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !SetBuildVersionStep
+    name: Set Build Version
+    buildVersion: '@file:BUILD_VERSION@'
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+- name: Set Build Version
+  steps:
+  - !CommandStep
+    name: Write Build Version to file:BUILD_VERSION
+    runInContainer: true
+    image: python 3.11
+    interpreter: !DefaultInterpreter
+      commands:
+      - python setup.py --version > BUILD_VERSION
+    useTTY: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !SetBuildVersionStep
+    name: Set Build Version
+    buildVersion: '@file:BUILD_VERSION@'
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
 - name: Execute Tests
   steps:
   - !UseTemplateStep
@@ -33,7 +61,7 @@ stepTemplates:
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !BuildImageStep
     name: Build Docker Container
-    tags: '@build_version@ @commit_hash@'
+    tags: '@build_version@'
     publish: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
 - name: Push Docker Container to Dockerhub
@@ -42,22 +70,18 @@ stepTemplates:
     name: Checkout Code
     templateName: Checkout Code
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !UseTemplateStep
-    name: Execute Tests
-    templateName: Execute Tests
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
     name: Publish to Docker Hub
     runInContainer: true
     image: docker
     interpreter: !DefaultInterpreter
       commands:
-      - build_version=@script:Python Get Version From Setup.py@
+      - build_version=@build_version@
       - echo $build_version
       - 'docker build -t mullinmax/@project_name@:latest # -t mullinmax/@project_name@:$build_version'
       - echo @secrets:mullinmax_docker_hub_password@ | docker login -u mullinmax --password-stdin
       - docker push mullinmax/@project_name@:latest
-      - '#docker push mullinmax/@project_name@:$build_version'
+      - docker push mullinmax/@project_name@:$build_version
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
 jobs:
