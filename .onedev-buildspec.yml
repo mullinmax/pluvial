@@ -12,6 +12,15 @@ stepTemplates:
     name: Set Build Version From Setup.py
     buildVersion: '@script:Python Get Version From Setup.py@'
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !CommandStep
+    name: print version string
+    runInContainer: true
+    image: python:3.11
+    interpreter: !DefaultInterpreter
+      commands:
+      - echo @script:Python Get Version From Setup.py@
+    useTTY: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
 - name: Execute Tests
   steps:
   - !UseTemplateStep
