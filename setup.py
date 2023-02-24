@@ -12,7 +12,7 @@ setup_dict = {
 	'long_description_content_type':'text/markdown',
     'author':'Maxwell Mullin',  # author of your project
     'author_email':'inbox@max-was-here.com',  # author's email address
-	'license':'MIT'
+	'license':'MIT',
 	'classifiers':[
 		# https://pypi.org/classifiers/
 		# How mature is this project? Common values are
