@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='beryl',  # name of your project
-    version='0.0.1',  # version number of your project
+    version='0.0.2',  # version number of your project
     packages=find_packages(),  # packages to include in your project
     include_package_data=True,  # include non-Python files in your package
     description='Markdown-based static site generator',  # brief description of your project
