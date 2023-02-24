@@ -1,38 +1,4 @@
 version: 19
-jobs:
-- name: PR check
-  steps:
-  - !UseTemplateStep
-    name: Execute Tests
-    templateName: Execute Tests
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !UseTemplateStep
-    name: Trial Docker Container Build
-    templateName: Trial Docker Container Build
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  triggers:
-  - !PullRequestUpdateTrigger {}
-  retryCondition: never
-  maxRetries: 3
-  retryDelay: 30
-  timeout: 3600
-- name: Update Master
-  steps:
-  - !UseTemplateStep
-    name: Execute Tests
-    templateName: Execute Tests
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !UseTemplateStep
-    name: Publish Docker Container
-    templateName: Publish Docker Conatiner
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  triggers:
-  - !BranchUpdateTrigger
-    branches: master
-  retryCondition: never
-  maxRetries: 3
-  retryDelay: 30
-  timeout: 3600
 stepTemplates:
 - name: Checkout Code
   steps:
@@ -78,7 +44,7 @@ stepTemplates:
     tags: '@build_version@ @commit_hash@'
     publish: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-- name: Publish Docker Conatiner
+- name: Push Docker Container to Dockerhub
   steps:
   - !UseTemplateStep
     name: Checkout Code
@@ -93,3 +59,48 @@ stepTemplates:
     tags: '@build_version@'
     publish: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !CommandStep
+    name: Publish to Docker Hub
+    runInContainer: true
+    image: docker
+    interpreter: !DefaultInterpreter
+      commands:
+      - 'docker build -t mullinmax/@project_name@:@build_version@ -t mullinmax/@project_name@:latest  '
+      - 'docker login -u mullinmax -p @secrets:dockerhub-password@  '
+      - docker push mullinmax/@project_name@:@build_version@
+    useTTY: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+jobs:
+- name: PR check
+  steps:
+  - !UseTemplateStep
+    name: Execute Tests
+    templateName: Execute Tests
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !UseTemplateStep
+    name: Trial Docker Container Build
+    templateName: Trial Docker Container Build
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !PullRequestUpdateTrigger {}
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 3600
+- name: Update Master
+  steps:
+  - !UseTemplateStep
+    name: Execute Tests
+    templateName: Execute Tests
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !UseTemplateStep
+    name: Push Docker Container to Docker Hub
+    templateName: Push Docker Container to Dockerhub
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !BranchUpdateTrigger
+    branches: master
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 3600
