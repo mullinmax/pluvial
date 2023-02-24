@@ -54,11 +54,6 @@ stepTemplates:
     name: Execute Tests
     templateName: Execute Tests
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !BuildImageStep
-    name: Publish Docker Container
-    tags: '@build_version@'
-    publish: false
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
     name: Publish to Docker Hub
     runInContainer: true
@@ -66,7 +61,7 @@ stepTemplates:
     interpreter: !DefaultInterpreter
       commands:
       - 'docker build -t mullinmax/@project_name@:@build_version@ -t mullinmax/@project_name@:latest  '
-      - 'docker login -u mullinmax -p @secrets:dockerhub-password@  '
+      - 'docker login -u mullinmax -p @secrets:mullinmax_docker_hub_password@  '
       - docker push mullinmax/@project_name@:@build_version@
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
