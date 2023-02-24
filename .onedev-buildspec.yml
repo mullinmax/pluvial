@@ -81,7 +81,7 @@ stepTemplates:
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
 jobs:
-- name: PR check
+- name: PR Tests
   jobExecutor: docker-executor
   steps:
   - !UseTemplateStep
