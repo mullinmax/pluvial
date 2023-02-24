@@ -18,7 +18,8 @@ stepTemplates:
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
     name: print build version and description
-    runInContainer: false
+    runInContainer: true
+    image: python:3.11
     interpreter: !DefaultInterpreter
       commands:
       - echo '@script:Python Get Version From Setup.py@'
