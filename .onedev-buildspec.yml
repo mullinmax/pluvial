@@ -61,6 +61,7 @@ stepTemplates:
     interpreter: !DefaultInterpreter
       commands:
       - build_version=@script:Python Get Version From Setup.py@
+      - echo $build_version
       - docker build -t mullinmax/@project_name@:latest -t mullinmax/@project_name@:$build_version
       - echo @secrets:mullinmax_docker_hub_password@ | docker login -u mullinmax --password-stdin
       - docker push mullinmax/@project_name@:latest
