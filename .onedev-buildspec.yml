@@ -16,18 +16,6 @@ stepTemplates:
     name: Set Build Description
     buildDescription: "version: @build_version@\r\nbranch: @branch@\r\ncommit: @commit_hash@"
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !CommandStep
-    name: print build version and description
-    runInContainer: true
-    image: python:3.11
-    interpreter: !DefaultInterpreter
-      commands:
-      - echo '@script:Python Get Version From Setup.py@'
-      - 'echo ''version: @build_version@'''
-      - 'echo ''branch: @branch@'''
-      - 'echo ''commit: @commit_hash@'''
-    useTTY: false
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
 - name: Execute Tests
   steps:
   - !UseTemplateStep
