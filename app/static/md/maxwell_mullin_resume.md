@@ -56,7 +56,7 @@ Computer Science Teaching Assistant (August 2015 - March 2016)
 - Python
 - SQL
 - HTML + CSS + JS
-- plantUML
+- PlantUML
 - [H2H](https://github.com/mullinmax/H2H)
 - BASH
 - C++
