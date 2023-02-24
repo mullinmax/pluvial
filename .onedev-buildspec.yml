@@ -80,8 +80,20 @@ jobs:
     name: Trial Docker Container Build
     templateName: Trial Docker Container Build
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  paramSpecs:
+  - !TextParam
+    name: version_string
+    allowEmpty: false
+    multiline: false
+    defaultValueProvider: !ScriptingDefaultValue
+      scriptName: Python Get Version From Setup.py
   triggers:
-  - !PullRequestUpdateTrigger {}
+  - !PullRequestUpdateTrigger
+    params:
+    - name: version_string
+      valuesProvider: !ScriptingValues
+        scriptName: Python Get Version From Setup.py
+      secret: false
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
@@ -97,9 +109,21 @@ jobs:
     name: Push Docker Container to Docker Hub
     templateName: Push Docker Container to Dockerhub
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  paramSpecs:
+  - !TextParam
+    name: version_string
+    allowEmpty: false
+    multiline: false
+    defaultValueProvider: !ScriptingDefaultValue
+      scriptName: Python Get Version From Setup.py
   triggers:
   - !BranchUpdateTrigger
     branches: master
+    params:
+    - name: version_string
+      valuesProvider: !ScriptingValues
+        scriptName: Python Get Version From Setup.py
+      secret: false
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
