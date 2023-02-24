@@ -60,8 +60,9 @@ stepTemplates:
     image: docker
     interpreter: !DefaultInterpreter
       commands:
+      - echo @project_name@
       - 'docker build -t mullinmax/@project_name@:latest  '
-      - 'docker login -u mullinmax -p @secrets:mullinmax_docker_hub_password@  '
+      - echo @secrets:mullinmax_docker_hub_password@ | docker login -u mullinmax --password-stdin
       - docker push mullinmax/@project_name@:latest
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
