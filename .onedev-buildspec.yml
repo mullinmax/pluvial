@@ -123,6 +123,10 @@ jobs:
   timeout: 3600
 - name: groovy script test
   steps:
+  - !UseTemplateStep
+    name: Checkout Code
+    templateName: Checkout Code
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
     name: groovy script test
     runInContainer: true
