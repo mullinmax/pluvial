@@ -76,10 +76,15 @@ stepTemplates:
     image: docker
     interpreter: !DefaultInterpreter
       commands:
-      - build_version=@build_version@
-      - echo $build_version
-      - docker build -t mullinmax/@project_name@:latest -t mullinmax/@project_name@:$build_version
       - echo @secrets:mullinmax_docker_hub_password@ | docker login -u mullinmax --password-stdin
+      - ''
+      - build_version=@build_version@
+      - echo building mullinmax/@project_name@:$build_version
+      - docker build -t mullinmax/@project_name@:$build_version
+      - docker push --all-tags mullinmax/@project_name@
+      - ''
+      - echo building mullinmax/@project_name@:latest
+      - 'docker build -t mullinmax/@project_name@:latest '
       - docker push --all-tags mullinmax/@project_name@
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
