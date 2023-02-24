@@ -36,7 +36,7 @@ setup_dict = {
 		'Programming Language :: Python :: 3.10',
 		'Programming Language :: Python :: 3.11'
 	],
-    'python_requires':'>=3.6, <3.11.*',  # min and max supported versions of Python
+    'python_requires':'>=3.6',  # min and max supported versions of Python
     'install_requires':[  # packages required to run your project
         'flask',
         'waitress',
