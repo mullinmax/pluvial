@@ -1,10 +1,8 @@
-# If you do not want to use a setup.py file you can use a requirements.txt file instead and the build will use that instead
-
 from setuptools import setup, find_packages
 
 setup_dict = {
     'name':'beryl',
-    'version':'0.0.2',
+    'version':'0.0.2', # will get automatically piced up by CI/CD pipeline
     'packages':find_packages(),  # Automatically finds identifies packages in repo to include
     'include_package_data':True,  # if non-Python files should be included
     'description':'Markdown-based static site generator',
