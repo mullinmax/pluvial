@@ -80,7 +80,7 @@ stepTemplates:
       - echo $build_version
       - docker build -t mullinmax/@project_name@:latest -t mullinmax/@project_name@:$build_version
       - echo @secrets:mullinmax_docker_hub_password@ | docker login -u mullinmax --password-stdin
-      - docker push mullinmax/@project_name@ -a
+      - docker push --all-tegs mullinmax/@project_name@
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
 jobs:
