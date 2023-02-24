@@ -3,17 +3,17 @@
 from setuptools import setup, find_packages
 
 setup_dict = {
-    name:'beryl',
-    version:'0.0.2',
-    packages:find_packages(),  # Automatically finds identifies packages in repo to include
-    include_package_data:True,  # if non-Python files should be included
-    description:'Markdown-based static site generator',
-	long_description:open('README.md').read(),
-	long_description_content_type:'text/markdown',
-    author:'Maxwell Mullin',  # author of your project
-    author_email:'inbox@max-was-here.com',  # author's email address
-	license:'MIT'
-	classifiers:[
+    'name':'beryl',
+    'version':'0.0.2',
+    'packages':find_packages(),  # Automatically finds identifies packages in repo to include
+    'include_package_data':True,  # if non-Python files should be included
+    'description':'Markdown-based static site generator',
+	'long_description':open('README.md').read(),
+	'long_description_content_type':'text/markdown',
+    'author':'Maxwell Mullin',  # author of your project
+    'author_email':'inbox@max-was-here.com',  # author's email address
+	'license':'MIT'
+	'classifiers':[
 		# https://pypi.org/classifiers/
 		# How mature is this project? Common values are
 		#   3 - Alpha
@@ -38,15 +38,15 @@ setup_dict = {
 		'Programming Language :: Python :: 3.10',
 		'Programming Language :: Python :: 3.11'
 	],
-    python_requires:'>=3.6, <3.11',  # min and max supported versions of Python
-    install_requires:[  # packages required to run your project
+    'python_requires':'>=3.6, <3.11',  # min and max supported versions of Python
+    'install_requires':[  # packages required to run your project
         'flask',
         'waitress',
         'markdown',
         'beautifulsoup4',
         'pygments'
     ],
-    extras_require:{  # optional dependencies for building or testing your project
+    'extras_require':{  # optional dependencies for building or testing your project
         'build':[
             # dependencies required for building your package
         ],
@@ -54,7 +54,7 @@ setup_dict = {
             # dependencies required for testing your package
             'pytest'
         ],
-    },
+    }
 }
 
 setup(**setup_dict)
