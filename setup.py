@@ -51,7 +51,7 @@ setup_dict = {
         'test':[
             # dependencies required for testing your package
             'pytest',
-			'ruff'
+			'ruff' # https://github.com/charliermarsh/ruff
         ],
     }
 }
