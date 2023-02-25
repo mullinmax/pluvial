@@ -48,9 +48,9 @@ stepTemplates:
     image: python:3.11
     interpreter: !DefaultInterpreter
       commands:
-      - pip install -e .
-      - pip install -U pytest
+      - pip install -e .[test]
       - pytest
+      - ruff check . --fix
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
 - name: Trial Docker Container Build
