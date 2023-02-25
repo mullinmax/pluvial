@@ -1,4 +1,3 @@
-#!/home/maxwell/miniconda3/envs/done-gen/bin/python
 from flask import Flask, redirect, send_file
 from waitress import serve
 import os
