@@ -1,0 +1,10 @@
+flask
+waitress
+markdown
+beautifulsoup4
+pygments
+
+[build]
+
+[test]
+pytest

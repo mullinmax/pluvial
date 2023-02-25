@@ -1,11 +1,6 @@
 #!/home/maxwell/miniconda3/envs/done-gen/bin/python
-import json
-from flask import Flask, request, jsonify, render_template, redirect, url_for, send_file
+from flask import Flask, redirect, send_file
 from waitress import serve
-import markdown
-import re
-from bs4 import BeautifulSoup
-import bs4
 import os
 
 from config import config

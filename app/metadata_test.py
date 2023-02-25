@@ -1,8 +1,7 @@
 import pytest
-import os
-print(os.getcwd())
-
 import metadata
+
+
 
 @pytest.fixture
 def sample_metadata():

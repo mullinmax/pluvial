@@ -1,0 +1,7 @@
+README.md
+setup.py
+beryl.egg-info/PKG-INFO
+beryl.egg-info/SOURCES.txt
+beryl.egg-info/dependency_links.txt
+beryl.egg-info/requires.txt
+beryl.egg-info/top_level.txt

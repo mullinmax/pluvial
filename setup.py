@@ -50,7 +50,8 @@ setup_dict = {
         ],
         'test':[
             # dependencies required for testing your package
-            'pytest'
+            'pytest',
+			'ruff'
         ],
     }
 }

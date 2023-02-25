@@ -1,8 +1,7 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 import markdown
-from bs4 import BeautifulSoup, element
+from bs4 import BeautifulSoup
 from flask import render_template
-import os
 
 from config import config
 from metadata import metadata
@@ -17,7 +16,16 @@ class article:
     def __post_init__(self):
         with open(self.path) as f:
             # create parser
-            md = markdown.Markdown(extensions = ['attr_list', 'tables', 'footnotes', 'meta', 'nl2br', 'toc', 'codehilite', 'fenced_code'])
+            md = markdown.Markdown(extensions = [
+                'attr_list', 
+                'tables', 
+                'footnotes', 
+                'meta', 
+                'nl2br', 
+                'toc', 
+                'codehilite', 
+                'fenced_code'
+            ])
 
             # parse  markdown to html
             self.body = md.convert(f.read())
@@ -59,7 +67,7 @@ class article:
                 output[-1].append(str(child))
         
         # concat tags
-        output = [''.join(l) for l in output]
+        output = [''.join(tag) for tag in output]
 
         # div wrap
         output_str = ''
@@ -67,7 +75,7 @@ class article:
         for tag in output:
             try:
                 cur_level = int(tag[2])
-            except:
+            except Exception:
                 print(tag)
             while len(levels) > 0 and cur_level <= levels[-1]:
                     levels.pop()
