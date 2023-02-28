@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup_dict = {
-    'name':'beryl',
+    'name':'pluvial',
     'version':'0.0.2', # will get automatically picked up by CI/CD pipeline
     'packages':find_packages(),  # Automatically finds identifies packages in repo to include
     'include_package_data':True,  # if non-Python files should be included
@@ -52,5 +52,11 @@ setup_dict = {
         ],
     }
 }
+
+try:
+	with open('BUILD_VERSION', 'r') as file:
+		setup_dict['version'] = file.read()
+except FileNotFoundError:
+	pass
 
 setup(**setup_dict)
