@@ -1,5 +1,5 @@
-# Beryl
-named after the rare gemstone: https://en.wikipedia.org/wiki/Beryl
+# pluvial
+named after the rare gemstone: https://en.wikipedia.org/wiki/pluvial
 
 
 ## Local Setup
@@ -17,8 +17,8 @@ For installers for operating systems other than linux see https://docs.conda.io/
 
 You may need to reopen your shell after installing miniconda
 
-    conda create -n beryl python=3.10
-    conda activate beryl
+    conda create -n pluvial python=3.10
+    conda activate pluvial
     conda install --file requirements.txt
 
 ### Run the project
@@ -33,19 +33,19 @@ The default port is 5000
 
 With your working directory in the root of the repository
 
-    docker build --tag beryl .
+    docker build --tag pluvial .
 
 ### Running the Docker container
 
-    docker run -p 5000:5000 beryl
+    docker run -p 5000:5000 pluvial
 
 or for detached mode
 
-    docker run -d -p 5000:5000 beryl    
+    docker run -d -p 5000:5000 pluvial    
 
 
 ### Publishing to docker
 
     docker login
-    docker build --tag mullinmax/beryl:latest .
-    docker push mullinmax/beryl:latest
+    docker build --tag mullinmax/pluvial:latest .
+    docker push mullinmax/pluvial:latest

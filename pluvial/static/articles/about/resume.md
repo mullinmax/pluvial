@@ -1,4 +1,8 @@
-<div class='thumbnail circle-image' style='grid-column: span 2'>
+title:resume
+theme:default.css
+nav_order:-1
+
+<div class='cover-img'>
     <img src="/static/img/headshot.jpg">
 </div>
 
@@ -53,46 +57,28 @@ Computer Science Teaching Assistant (August 2015 - March 2016)
 
 ## Programming Languages
 
-- Python
-- SQL
-- HTML + CSS + JS
-- PlantUML
-- [H2H](https://github.com/mullinmax/H2H)
-- BASH
-- C++
-- C
-- R
+|      |   |        |                                       |               |    |   | | |
+|------|---|--------|---------------------------------------|---------------|----|---|-|-|
+|Python|SQL|plantUML|[H2H](https://github.com/mullinmax/H2H)|HTML + CSS + JS|BASH|C++|C|R|
 
 ## Tools & Platforms
 
-- CI/CD
-- Git
-- GitHub
-- Linux
-- SQL Database Design
-- Docker
-- Azure
-- Tableau
-- Power BI
+|     |   |      |     |                   |      |     |       |        |
+|-----|---|------|-----|-------------------|------|-----|-------|--------|
+|CI/CD|Git|GitHub|Linux|SQL Database Design|Docker|Azure|Tableau|Power BI|
 
 ## Projects
 
 - **Published bioinformatics reasearch paper** [https://www.mdpi.com/2223-7747/9/12/1751](https://www.mdpi.com/2223-7747/9/12/1751)
 - **H2H programming language** A symbolic, BF-like language based in C++ & Python [github.com/mullinmax/H2H](https://github.com/mullinmax/H2H)
-- **Beryl** A dockerized flask web server to host markdown files. *Which is how this document was made:* [max-was-here.com](https://max-was-here.com)
+- **pluvial** A dockerized flask web server to host markdown files. *Which is how this document was made:* [max-was-here.com](https://max-was-here.com)
 
 ## Hobbies
 
- - Self Hosted Webservices
- - Dungeons and Dragons
- - Wood Working
- - Mechanical Keyboards
- - CAD & 3D printing
- - Home Automation
- - HomeLabs
- - Guitar/Piano/Drums
- - Disk Golf
- - Electric Vehicles
+|                       |                    |                  |                    |                 |
+|-----------------------|--------------------|------------------|--------------------|-----------------|
+|Self Hosted Webservices|Dungeons and Dragons|Wood Working      |Mechanical Keyboards|CAD & 3D printing|
+|Home Automation        |HomeLabs            |Guitar/Piano/Drums|Disk Golf           |Electric Vehicles|
 
 ## References
 
