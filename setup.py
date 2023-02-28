@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup_dict = {
     'name':'beryl',
-    'version':'0.0.2', # will get automatically piced up by CI/CD pipeline
+    'version':'0.0.2', # will get automatically picked up by CI/CD pipeline
     'packages':find_packages(),  # Automatically finds identifies packages in repo to include
     'include_package_data':True,  # if non-Python files should be included
     'description':'Markdown-based static site generator',
@@ -45,9 +45,6 @@ setup_dict = {
         'pygments'
     ],
     'extras_require':{  # optional dependencies for building or testing your project
-        'build':[
-            # dependencies required for building your package
-        ],
         'test':[
             # dependencies required for testing your package
             'pytest',
