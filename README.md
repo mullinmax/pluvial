@@ -1,6 +1,6 @@
 # pluvial
-named after the rare gemstone: https://en.wikipedia.org/wiki/pluvial
 
+Pluvial is a Python package for generating static websites from markdown files, born out of a rainy day project. The name "pluvial" was chosen as a nod to the day the project was started, which happened to be a particularly rainy day.
 
 ## Local Setup
 
